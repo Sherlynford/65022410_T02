@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>65022410</title>
+</head>
+<body>
+  <form>
+    <label>Name:</label>
+    <input type="text" id="name"  onmouseover="changeColor(this)" onmouseout="changeColorBack(this)" oninput="changeColorInput(this)">
+    <br>
+    <label>Surname:</label>
+    <input type="text" id="surname" onmouseover="changeColor(this)" onmouseout="changeColorBack(this)" oninput="changeColorInput(this)">
+    <br>
+    <label>Date of birth:</label>
+    <input type="date" id="dob">
+    <br>
+    <label>Select tour language:</label>
+    <select id="language">
+      <option value="">--Select--</option>
+      <option value="english">English</option>
+      <option value="french">French</option>
+      <option value="german">German</option>
+      <option value="spanish">Spanish</option>
+    </select>
+    <br>
+    <input type="button" value="Submit" onclick="checkInput()">
+  </form>
+  <p id="output"></p>
+
+  <script>
+    function changeColor(input) {
+      input.style.backgroundColor = "yellow";
+    }
+    function changeColorBack(input) {
+      input.style.backgroundColor = "";
+    }
+    function changeColorInput(input) {
+      input.style.backgroundColor = "skyblue";
+    }
+    function checkInput() {
+      var name = document.getElementById("name").value;
+      var surname = document.getElementById("surname").value;
+      var dob = document.getElementById("dob").value;
+      var language = document.getElementById("language").value;
+      var output = document.getElementById("output");
+      var errorMessage = "";
+      var isError = false;
+
+      if (!name) {
+        errorMessage += "Insert name ";
+        isError = true;
+      } 
+       if (!surname) {
+        errorMessage += "<br>Insert surname ";
+        isError = true;
+      } 
+       if (!dob) {
+        errorMessage += "<br>Insert birth date ";
+        isError = true;
+      } 
+       if (!language) {
+        errorMessage += "<br>Insert language ";
+        isError = true;
+      }
+      if (isError) {
+        errorMessage = errorMessage.slice(0, -2);
+        output.innerHTML = errorMessage;
+        output.style.color = "red";
+      }else {
+        output.innerHTML = name +"," + surname+"," + dob+"," + language;
+        output.style.color = "green";
+      }
+    }
+  </script>
+</body>
+</html>
